@@ -38,8 +38,6 @@ This is a sample project that uses OpenRouter.
         ```
         OPENROUTER_API_KEY=<your_openrouter_api_key>
         OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-        YOUR_SITE_URL=<your_site_url>
-        YOUR_SITE_NAME=<your_site_name>
         ```
 
     *   Make sure to replace `<model_name>` in `main.py` with the desired model.

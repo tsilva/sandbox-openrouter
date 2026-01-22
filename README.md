@@ -1,98 +1,153 @@
-# sandbox-openrouter
+<div align="center">
+  <img src="logo.png" alt="sandbox-openrouter" width="512"/>
 
-This is a sample project that uses OpenRouter.
+  [![Python](https://img.shields.io/badge/Python-3.7+-3776ab?logo=python&logoColor=white)](https://python.org)
+  [![OpenRouter](https://img.shields.io/badge/OpenRouter-API-6366f1)](https://openrouter.ai/)
+  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[OpenRouter](https://openrouter.ai/) is an aggregator that lets you use different LLMs (like gpt-4o, Claude-3.5-sonnet, etc.) through a single API. This allows you to easily switch between models and providers for best pricing, reliability and throughput.
+  **Access 100+ LLMs through a single unified API with automatic model selection and provider fallback**
 
-## Prerequisites
+  [OpenRouter Docs](https://openrouter.ai/docs) · [API Reference](https://openrouter.ai/api/v1)
+</div>
 
-*   Python 3.7+
-*   `uv` package installer
+## Overview
 
-## Setup
+This project demonstrates how to use [OpenRouter](https://openrouter.ai/), an LLM aggregator that provides a unified API to access different models (GPT-4, Claude, Llama, etc.) from various providers. Switch between models for optimal pricing, reliability, and throughput without changing your code.
 
-1.  Clone the repository:
+## Features
 
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
+- **Direct HTTP requests** - Full control over API interactions with streaming support
+- **OpenAI SDK compatible** - Drop-in replacement using `base_url` override
+- **LangChain integration** - Works seamlessly with LangChain's ecosystem
+- **Auto model selection** - Use `openrouter/auto` for automatic best-model routing
+- **Structured output** - JSON schema support for typed responses
+- **Reasoning traces** - Access model thinking with `include_reasoning`
 
-2.  Create a virtual environment:
+## Quick Start
 
-    ```bash
-    uv venv
-    ```
+```bash
+# Clone and setup
+git clone https://github.com/tsilva/sandbox-openrouter.git
+cd sandbox-openrouter
+uv venv && uv pip install -r requirements.txt
 
-3.  Install dependencies:
+# Configure API key
+cp .env.example .env
+# Edit .env and add your OPENROUTER_API_KEY
 
-    ```bash
-    uv pip install -r requirements.txt
-    ```
+# Run an example
+python examples/test_requests.py
+```
 
-4.  Set up environment variables:
+## Installation
 
-    *   Create a `.env` file in the project root.
-    *   Add the following variables, replacing the placeholders with your actual values:
+### Prerequisites
 
-        ```
-        OPENROUTER_API_KEY=<your_openrouter_api_key>
-        OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-        ```
+- Python 3.7+
+- [uv](https://github.com/astral-sh/uv) package installer
+- OpenRouter API key ([get one here](https://openrouter.ai/keys))
 
-    *   Make sure to replace `<model_name>` in `main.py` with the desired model.
+### Setup
 
-5.  Run the script:
+1. Create a virtual environment:
+   ```bash
+   uv venv
+   ```
 
-    ```bash
-    python main.py
-    ```
+2. Install dependencies:
+   ```bash
+   uv pip install -r requirements.txt
+   ```
 
-    (No activation step is needed after creating the virtual environment with `uv venv`.)
+3. Configure environment variables in `.env`:
+   ```
+   OPENROUTER_API_KEY=<your-api-key>
+   OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+   ```
 
-## Notes
+## Usage
 
-*   The `.env` file is ignored by Git (see `.gitignore`) to prevent accidental exposure of your API key.
-*   Remember to replace the placeholder values in the `.env` file and `<model_name>` in `main.py`.
-# sandbox-openrouter
+### Direct HTTP Requests
 
-This is a sample project that uses OpenRouter.
+```python
+import requests
+import os
 
-## Setup
+response = requests.post(
+    "https://openrouter.ai/api/v1/chat/completions",
+    headers={"Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}"},
+    json={
+        "model": "openrouter/auto",
+        "messages": [{"role": "user", "content": "Hello!"}]
+    }
+)
+print(response.json()["choices"][0]["message"]["content"])
+```
 
-1.  Clone the repository:
+### OpenAI SDK
 
-    ```bash
-    git clone https://github.com/tsilva/sandbox-openrouter.git
-    cd <repository_directory>
-    ```
+```python
+from openai import OpenAI
+import os
 
-2.  Create a virtual environment:
+client = OpenAI(
+    base_url=os.getenv("OPENROUTER_BASE_URL"),
+    api_key=os.getenv("OPENROUTER_API_KEY")
+)
 
-    ```bash
-    uv venv
-    ```
+completion = client.chat.completions.create(
+    model="openrouter/auto",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+print(completion.choices[0].message.content)
+```
 
-3.  Install dependencies:
+### LangChain
 
-    ```bash
-    uv pip install -r requirements.txt
-    ```
+```python
+from langchain_openai import ChatOpenAI
+import os
 
-4.  Set up environment variables:
+llm = ChatOpenAI(
+    model="openrouter/auto",
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+    base_url=os.getenv("OPENROUTER_BASE_URL")
+)
 
-    *   Create a `.env` file in the project root.
-    *   Add the following variables, replacing the placeholders with your actual values:
+result = llm.invoke("Hello!")
+print(result.content)
+```
 
-        ```
-        OPENROUTER_API_KEY=<your_openrouter_api_key>
-        OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-        ```
+## Examples
 
-    *   Make sure to replace `<model_name>` in `main.py` with the desired model.
+| Example | Description |
+|---------|-------------|
+| `test_requests.py` | Basic API call with image input |
+| `test_streaming.py` | Server-sent events (SSE) streaming |
+| `test_openai.py` | OpenAI SDK compatibility |
+| `test_langchain.py` | LangChain integration |
+| `test_structured_output.py` | JSON schema responses |
+| `test_deepseek-r1.py` | Reasoning model with traces |
+| `test_multiple_models.py` | Query multiple models |
+| `test_tools.py` | Function calling |
+| `test_search.py` | Web search capability |
+| `test_sort_provider.py` | Provider sorting |
+| `test_disable_data_collection.py` | Privacy settings |
 
-5.  Run the script:
+Run any example:
+```bash
+python examples/<example_name>.py
+```
 
-    ```bash
-    python examples/<example_name>.py
-    ```
+## Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `requests` | Direct HTTP API calls |
+| `openai` | OpenAI SDK (compatible with OpenRouter) |
+| `langchain` + `langchain-openai` | LangChain integration |
+| `python-dotenv` | Environment variable management |
+
+## License
+
+MIT

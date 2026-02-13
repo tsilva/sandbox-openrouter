@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sandbox-openrouter"
+version = "0.1.0"
+description = "**🔀 Access 100+ LLMs through a single unified API with automatic model selection and provider fallback**"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    "openai",
+    "python-dotenv",
+    "langchain",
+    "langchain-openai",
+]

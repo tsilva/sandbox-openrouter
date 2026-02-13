@@ -5,7 +5,7 @@
   [![OpenRouter](https://img.shields.io/badge/OpenRouter-API-6366f1)](https://openrouter.ai/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-  **🔀 Access 100+ LLMs through a single unified API with automatic model selection and provider fallback**
+  **🌐 Sample project for learning OpenRouter LLM aggregation 🔀**
 
   [OpenRouter Docs](https://openrouter.ai/docs) · [API Reference](https://openrouter.ai/api/v1)
 </div>

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="sandbox-openrouter" width="512"/>
+  <img src="https://raw.githubusercontent.com/tsilva/sandbox-openrouter/main/logo.png" alt="sandbox-openrouter" width="512"/>
 
   [![Python](https://img.shields.io/badge/Python-3.7+-3776ab?logo=python&logoColor=white)](https://python.org)
   [![OpenRouter](https://img.shields.io/badge/OpenRouter-API-6366f1)](https://openrouter.ai/)

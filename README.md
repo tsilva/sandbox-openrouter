@@ -1,14 +1,16 @@
-<div align="center">
+<p align="center">
   <img src="https://raw.githubusercontent.com/tsilva/sandbox-openrouter/main/logo.png" alt="sandbox-openrouter" width="512"/>
+  <br />
+  <!-- repo-tagline:start -->
+  <strong>🌐 Sample project for learning OpenRouter LLM aggregation 🔀</strong>
+  <!-- repo-tagline:end -->
+</p>
 
-  [![Python](https://img.shields.io/badge/Python-3.7+-3776ab?logo=python&logoColor=white)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.7+-3776ab?logo=python&logoColor=white)](https://python.org)
   [![OpenRouter](https://img.shields.io/badge/OpenRouter-API-6366f1)](https://openrouter.ai/)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-  **🌐 Sample project for learning OpenRouter LLM aggregation 🔀**
-
   [OpenRouter Docs](https://openrouter.ai/docs) · [API Reference](https://openrouter.ai/api/v1)
-</div>
 
 ## Overview
 

@@ -13,7 +13,7 @@ headers = {
     "Content-Type": "application/json"
 }
 payload = {
-    "model": "deepseek/deepseek-r1",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
     "messages": [
         {"role": "user", "content": "How would you build the world's tallest skyscraper?"}
     ],

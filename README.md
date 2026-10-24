@@ -129,12 +129,14 @@ print(result.content)
 | `test_openai.py` | OpenAI SDK compatibility |
 | `test_langchain.py` | LangChain integration |
 | `test_structured_output.py` | JSON schema responses |
-| `test_deepseek-r1.py` | Reasoning model with traces |
+| `test_deepseek-r1.py` | DeepSeek V4.1 Flash 1017 reasoning traces |
 | `test_multiple_models.py` | Query multiple models |
 | `test_tools.py` | Function calling |
 | `test_search.py` | Web search capability |
 | `test_sort_provider.py` | Provider sorting |
 | `test_disable_data_collection.py` | Privacy settings |
+
+DeepSeek reasoning examples use `deepseek/deepseek-v4.1-flash-1017`; their existing filenames are retained.
 
 Run any example:
 ```bash

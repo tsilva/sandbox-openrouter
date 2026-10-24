@@ -48,7 +48,7 @@ The codebase demonstrates three ways to interact with OpenRouter:
 
 ### Model Selection
 
-Most examples use `"openrouter/auto"` which automatically selects the best available model. Specific models can be targeted by changing the model parameter (e.g., `"deepseek/deepseek-r1"`).
+Most examples use `"openrouter/auto"` which automatically selects the best available model. Specific models can be targeted by changing the model parameter (e.g., `"deepseek/deepseek-v4.1-flash-1017"`).
 
 ### Response Patterns
 

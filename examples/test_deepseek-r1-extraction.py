@@ -26,9 +26,9 @@ def do_req(model, content, include_reasoning=False):
     }
     return requests.post(url, headers=headers, data=json.dumps(payload))
 
-# R1 will reliably return "done" for the content portion of the response
+# Request reasoning separately from the final answer.
 content = f"{question} Please think this through, but don't output an answer"
-reasoning_response = do_req("deepseek/deepseek-r1", content, True)
+reasoning_response = do_req("deepseek/deepseek-v4.1-flash-1017", content, True)
 reasoning = reasoning_response.json()['choices'][0]['message']['reasoning']
 
 # Let's test! Here's the naive response:

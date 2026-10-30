@@ -154,4 +154,4 @@ python examples/<example_name>.py
 
 ## License
 
-MIT
+[MIT License](LICENSE).
